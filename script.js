@@ -174,3 +174,70 @@ function Viewhighscore(){
         
     })
 }
+//Mostrar highscore
+function showLi(){
+    var clear=document.createElement("button");
+    var goBack=document.createElement("button");
+
+    questionsSec.innerHTML = "";
+    var createH2 = document.createElement("h2");
+        createH2.textContent = "High scores";
+        questionsSec.appendChild(createH2);
+//Agregar li a cada score que se haga
+    for (var j = 0; j < allScore.length; j++) {
+        allScore.sort(function(a, b) {
+            return b.score-a.score;
+          });
+        var li = document.createElement("li");
+            li.textContent=allScore[j].name + " " +"-"+" "+ allScore[j].score;
+            li.setAttribute("data-index", j);
+            questionsSec.setAttribute("style","margin:20px auto;");
+            li.setAttribute("style", "list-style-type:numbers; list-style-position:inside; margin:5px auto;border-radius:0; background-color:#b46fa2; width:200px; color:black;" );
+                goBack.textContent = "Go back";
+                clear.textContent = "Clear";
+                    
+                    questionsSec.appendChild(li);
+                    questionsSec.appendChild(goBack);
+                    questionsSec.appendChild(clear);
+        clear.addEventListener("click", function () {
+            localStorage.clear();
+            location.reload();
+
+        });
+        goBack.addEventListener("click", function () {
+            location.reload();
+        });
+     
+}
+}
+//Guardar en local Storage
+function save(){
+    var storedTodos = JSON.parse(localStorage.getItem("allScore"));
+ 
+    if (storedTodos !== null) {
+    allScore = storedTodos;
+  }
+  showLi();
+}
+function saveall(){
+    localStorage.setItem("allScore", JSON.stringify(allScore));
+}
+function comparar(a,b){return a-b};
+
+//Mostrar resultados en highscore
+function submitBtn(){
+    var Vscore={
+        name: createInput.value.trim(),
+        score:finalScore,
+    };
+    if (Vscore === ""){
+        return;
+    }
+    
+    allScore.push(Vscore);
+    
+    saveall();
+    showLi();
+}
+save();
+start();
