@@ -142,3 +142,35 @@ function correct(event){
         questionsSec.appendChild(creatFooter);        
 
 }
+// Ver final score y agregarlo a la lista
+function Viewhighscore(){
+    //Titulo
+    questionsSec.innerHTML ="";
+    var createH1=document.createElement("h1");
+        contenedorPreg.setAttribute("style","margin:20px auto;text-align:center;align-items:center; justify-content:center");
+        createH1.setAttribute("id", "createH1");
+        createH1.textContent = "All done!";
+        questionsSec.appendChild(createH1);
+    //Parrafo para ver score
+    var createp1=document.createElement("p");
+        createp1.setAttribute("id", "createp1");
+        finalScore=timeCount;
+        createp1.textContent = "Yoy final score is " + finalScore;
+            createp1.setAttribute("style", "color:black; font-size:1.5em; justify-content:center;margin:20px 75px; align-text:center;");
+            questionsSec.appendChild(createp1);
+    //Barra de texto para agregar iniciales
+    var createLabel=document.createElement("label");
+        createLabel.textContent = "Enter your initials: ";
+        questionsSec.appendChild(createLabel);
+    //Agregar input
+        createInput.setAttribute("type", "text");
+        questionsSec.appendChild(createInput);
+    //Boton submit
+    Submit.textContent = "Submit";
+    questionsSec.appendChild(Submit);
+    Submit.addEventListener("click", function(event) {
+        event.preventDefault();
+        submitBtn();
+        
+    })
+}
