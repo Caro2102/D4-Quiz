@@ -6,6 +6,7 @@ Evaluación sobre codificación
 
 ## Captura de pantalla
 El siguiente GIF demuestra la apariencia y funcionalidad de la aplicación web:
+
 ![GIF muestra de la aplicacion web](./GIF/GIF-muestra1.gif)
 
 ## Enlaces
