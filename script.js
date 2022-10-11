@@ -98,3 +98,47 @@ function start(){
         showLi();
     });
 }
+//Inicio de preguntas
+function startGame(questionOn){
+    questionsSec.innerHTML ="";
+    var createH2=document.createElement("h2");
+
+    for(var i=0; i<listQuestions.length; i++){
+        var showQ=listQuestions[questionOn].question;
+        var showO=listQuestions[questionOn].options;
+        createH2.textContent = showQ;
+        questionsSec.appendChild(createH2);
+        createH2.setAttribute("style","text-align:left;");
+        contenedorPreg.setAttribute("style","margin:20px auto; align-items:left; ");
+        
+    }
+    //Agrear li a cada opcion
+    showO.forEach(function(NL){
+
+        var createUl=document.createElement("ul");
+        var createLi=document.createElement("li");
+        createLi.setAttribute("id","creatLi");
+        questionsSec.appendChild(createUl);
+        createUl.appendChild(createLi);
+        createLi.textContent=NL;
+        createLi.addEventListener("click", correct);
+    });
+}
+//Comprobar si la opcion seleccionada esta bien o no
+function correct(event){
+    var creatFooter = document.createElement("footer");    
+        var check =event.target;
+        if(check.matches("li")){
+            if(check.textContent === listQuestions[questionOn].answer){
+                console.log(check.matches("li"));
+                creatFooter.textContent = "Correct!"
+            }
+            else{
+                creatFooter.textContent = "Incorrect!"
+                timeCount-=wrong;
+            }
+        }
+        questionOn++;
+        questionsSec.appendChild(creatFooter);        
+
+}
